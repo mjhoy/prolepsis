@@ -315,10 +315,10 @@
 
    // Export some variables.
    root.Prolepsis = {
-     PrModel : PrModel,
-     PrCollection : PrCollection,
-     PrCollectionView : PrCollectionView,
-     PrModelView : PrModelView
+     Model : PrModel,
+     Collection : PrCollection,
+     CollectionView : PrCollectionView,
+     ModelView : PrModelView
    };
 
 } ( jQuery, Backbone, _ ) );
