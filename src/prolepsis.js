@@ -10,7 +10,7 @@
   var root       = this,
       Model      = Backbone.Model,
       Collection = Backbone.Collection,
-      View       = Backbone.view,
+      View       = Backbone.View,
       _sync,
       getUrl, urlError, renderForm,
       PrModel, PrCollection, PrCollectionView, PrModelView;
