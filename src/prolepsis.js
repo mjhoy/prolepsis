@@ -51,7 +51,7 @@
        var pattern, 
            b = this.belongsTo,
            c = this.collectionName;
-       if ( typeof c !== "undefined" && c !== null ) { 
+       if ( typeof c === "undefined" || c === null ) { 
          throw 'PrCollection: collectionName must be set.';
        }
        // Get the collection's url based on the current url.
@@ -115,7 +115,7 @@
      initialize : function() {
        var mV = this.modelView,
            tS = this.templateSelector;
-       if ( typeof mv === "undefined" || mv === null ) throw 'CollectionView: modelView must be set.';
+       if ( typeof mV === "undefined" || mV === null ) throw 'CollectionView: modelView must be set.';
        if ( typeof tS === "undefined" || tS === null ) throw 'CollectionView: templateSelector must be set.';
        _.bindAll( this, 'render' );
        this.collection.bind( 'reset', this.render );
@@ -138,7 +138,7 @@
            models.append( view.render().el );
          } );
        } else {
-         models.append( "<p>No"+collection.collection_name+" yet, please add some!</p>" );
+         models.append( "<p>No"+collection.collectionName+" yet, please add some!</p>" );
        }
        if ( $.fn.rails_sort ) {
          this.$( '.sortable' ).rails_sort( { items : 'li.model-view' } );
@@ -230,7 +230,7 @@
      },
      initialize : function() {
        var tS = this.templateSelector;
-       if ( typeof tS === "undefined" || ts === null ) {
+       if ( typeof tS === "undefined" || tS === null ) {
          throw 'ModelView: templateSelector must be set.';
        }
        _.bindAll( this, 'render' );
