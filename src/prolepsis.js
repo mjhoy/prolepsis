@@ -138,7 +138,7 @@
            models.append( view.render().el );
          } );
        } else {
-         models.append( "<p>No"+collection.collectionName+" yet, please add some!</p>" );
+         models.append( "<p>No "+collection.collectionName+" yet, please add some!</p>" );
        }
        if ( $.fn.rails_sort ) {
          this.$( '.sortable' ).rails_sort( { items : 'li.model-view' } );
