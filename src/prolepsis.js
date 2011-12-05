@@ -149,18 +149,17 @@
      submitNew : function ( e ) {
        var self = this,
            form = this.form;
-       if ( form ) {
-         $.ajax( {
-           url : form.attr( 'action' ),
-           type : form.attr( 'method' ),
-           data : form.serializeArray(),
-           dataType : 'json',
-           success : function() {
-             self.renderForm();
-             self.collection.fetch();
-           }
-         } );
-       }
+       $.ajax( {
+         url : form.attr( 'action' ),
+         type : form.attr( 'method' ),
+         data : form.serializeArray(),
+         dataType : 'json',
+         success : function() {
+           self.renderForm();
+           self.collection.fetch();
+         }
+       } );
+
        e.preventDefault();
        return false;
      },
