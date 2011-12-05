@@ -86,7 +86,9 @@
        $( this.el ).addClass( 'with-form' );
        // Render the datepicker jQuery UI plugin if there is
        // a date-field present.
-       $( '.date-field', form ).datepicker();
+       if ( $.fn.datepicker ) {
+         $( '.date-field', form ).datepicker();
+       }
        form.slideDown();
      } else {
        // Remove the form.
