@@ -126,6 +126,7 @@
 
      render : function() {
        var models,
+           self = this,
            el = this.el,
            template = this.template,
            collection = this.collection;
@@ -133,7 +134,7 @@
        models = this.$( '.models' );
        if ( collection.length > 0 ) {
          collection.each( function ( m ) {
-           view = new this.modelView( {
+           view = new self.modelView( {
              model : m,
              collection : collection
            } );
@@ -151,17 +152,18 @@
      submitNew : function ( e ) {
        var self = this,
            form = this.form;
-       $.ajax( {
-         url : form.attr( 'action' ),
-         type : form.attr( 'method' ),
-         data : form.serializeArray(),
-         dataType : 'json',
-         success : function() {
-           self.renderForm();
-           self.collection.fetch();
-         }
-       } );
-
+       if ( form ) {
+         $.ajax( {
+           url : form.attr( 'action' ),
+           type : form.attr( 'method' ),
+           data : form.serializeArray(),
+           dataType : 'json',
+           success : function() {
+             self.renderForm();
+             self.collection.fetch();
+           }
+         } );
+       }
        e.preventDefault();
        return false;
      },
@@ -179,17 +181,16 @@
            form = this.form,
            target = e.target;
 
-       if ( form ) {
-         $.ajax( {
-           type : 'get',
-           url : $( target ).attr( 'href' ),
-           dataType : 'json',
-           success : function ( data ) {
-             if ( self.form ) self.form.remove();
-             self.renderForm( data.html, '.new-form-container' );
-           }
-         } );
-       }
+       $.ajax( {
+         type : 'get',
+         url : $( target ).attr( 'href' ),
+         dataType : 'json',
+         success : function ( data ) {
+           if ( self.form ) self.form.remove();
+           self.renderForm( data.html, '.new-form-container' );
+         }
+       } );
+
        e.preventDefault();
        return false;
      }
@@ -201,7 +202,15 @@
      tagName : 'li',
      className : 'model-view',
      id : function() {
-       return this.collection.model_name + '_' + this.model.id;
+       return this.collection.modelName + '_' + this.model.id;
+     },
+     // Override Backbone.View's _configure method to make sure
+     // that `id` is always called within this object's context.
+     // The DOM element is constructed before `initialize` is
+     // called so we need to do it before then.
+     _configure : function ( options ) {
+       _.bindAll( this, 'id' );
+       return View.prototype._configure.apply(this, arguments);
      },
      events : {
        'click .edit' : 'edit',
@@ -235,6 +244,7 @@
          throw 'ModelView: templateSelector must be set.';
        }
        _.bindAll( this, 'render' );
+       _.bindAll( this, 'id' );
        this.model.bind( 'change', this.render );
        this.template = _.template( $( tS ).html() );
      },
