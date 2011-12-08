@@ -30,7 +30,8 @@
      // Augment Backbone's `toJSON` to add a 'param' property
      // to the object.
      toJSON : function() {
-       return _.extend(Model.prototype.toJSON.call(this), { param: this.param() })
+       var json = Model.prototype.toJSON.call( this );
+       return _.extend( json, { param: this.param() } )
      },
 
      // For models that are referred to on the server by their 'param'
