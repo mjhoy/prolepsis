@@ -1,0 +1,53 @@
+<!-- Project collection template -->
+<script type="text/template" id="project-collection-template" >
+  <a class="new" href="/projects/new">New project</a>
+
+  <div class="new-form-container">
+  </div>
+
+  <ul class="projects models sortable" data-sort-url="<%= projects_sort_path %>">
+  </ul>
+</script>
+
+<!-- Project template -->
+<script type="text/template" id="project-template">
+  <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+  <span class="name"><%%= name %></span>
+  <span class="links">
+    <a class="show" href="/projects/<%%= param %>">Show</a>
+    <a class="edit" href="/projects/<%%= param %>/edit">Edit</a>
+    <a class="delete" href="/projects/<%%= param %>" data-confirm="Are you sure?" data-method="delete">Delete</a>
+    <a class="cancel" href="#">Cancel</a>
+  </span>
+  <div class="edit-form-container">
+
+  </div>
+</script>
+
+<% if @project.present? -%>
+
+  <!-- Project entries collection template -->
+  <script type="text/template" id="project-entries-collection-template" >
+    <a class="new" href="/projects/<%= @project.to_param %>/entries/new">New entry</a>
+
+    <div class="new-form-container">
+    </div>
+
+    <ul class="entries models sortable" data-sort-url="<%= project_entries_sort_path(@project) %>">
+    </ul>
+  </script>
+
+  <!-- Entry template -->
+  <script type="text/template" id="entry-template">
+    <span class="ui-icon ui-icon-arrowthick-2-n-s"></span>
+    <span class="title"><%%= title %></span>
+    <span class="links">
+      <a class="edit" href="/projects/<%= @project.to_param %>/entries/<%%= param %>/edit">Edit</a>
+      <a class="delete" href="/projects/<%= @project.to_param %>/entries/<%%= param %>" data-confirm="Are you sure?" data-method="delete">Delete</a>
+      <a class="cancel" href="#">Cancel</a>
+    </span>
+    <div class="edit-form-container">
+    </div>
+  </script>
+
+<% end -%>

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Precompile assets and push master to heroku.
+
+set -e
+
+# Return unless the working directory is clean.
+if ! git status | grep 'working directory clean'
+then echo 'Clean up working directory first.'; exit 1
+fi
+
+# Get current branch
+branch=`git status | grep "On branch" | cut -d ' ' -f4`; # hack-y
+echo Deploying $branch to heroku;
+
+git checkout heroku;
+git reset --hard $branch;
+
+rake assets:precompile;
+git aa public/assets;
+git ci -m 'precompile assets for heroku';
+git push heroku heroku:master -f;
+git checkout $branch;
+heroku open;

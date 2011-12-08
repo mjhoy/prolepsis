@@ -1,0 +1,6 @@
+%nav.main
+  %ul
+    %li
+      = link_to 'Home', root_path, :class => is_active?('home')
+    %li
+      = link_to 'Projects', projects_path, :class => is_active?('projects')

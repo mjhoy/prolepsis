@@ -1,0 +1,24 @@
+!!!
+%html
+  %head
+    %meta{'charset'=>'utf-8'}
+    %title new app
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+
+    = render 'shared/backbone/templates'
+    = render 'shared/extra_head'
+
+    = csrf_meta_tags
+
+  %body{ :class => body_class }
+
+    =render 'shared/header'
+    =render 'shared/navigation'
+    =render 'shared/notice'
+
+    %section#content{ :class => content_class }
+
+      =yield
+
+    =render 'shared/footer'

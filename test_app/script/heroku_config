@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Heroku normally disregards the `development` and `test` gem
+# groups. We also want to ignore `assets` because those will
+# be precompiled. Ignore for cedar stack.
+heroku config:add BUNDLE_WITHOUT="development:test:assets"

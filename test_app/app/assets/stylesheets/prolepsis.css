@@ -1,0 +1,11 @@
+/* A model view's 'cancel' link is hidden without the edit form. */
+.model-view a.cancel { visibility: hidden; }
+.model-view.with-form a.cancel { visibility: visible }
+
+/* basic collection list styling */
+.model-view {
+  padding: 5px 5px 5px 30px; /* room on the left for the sort arrow */
+  background-color: white;
+  border: 1px solid #ccc;
+  margin: 0.5em 0;
+}

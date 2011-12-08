@@ -1,0 +1,4 @@
+%li
+  %h2=link_to project.name, project
+  %p
+    =pluralize( project.entries.count, 'entry' )

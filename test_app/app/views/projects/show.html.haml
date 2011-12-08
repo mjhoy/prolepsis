@@ -1,0 +1,12 @@
+%h1
+  Project
+  %em
+    =@project.name
+
+%p
+  =link_to 'Edit project and entries', edit_project_path(@project)
+
+%h2.entries
+  Entries
+%ol
+  =render @project.entries

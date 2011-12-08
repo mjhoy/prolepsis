@@ -1,0 +1,75 @@
+/*
+ *= require vendor/normalize
+ *= require vendor/jquery-ui
+ *= require prolepsis
+ *= require_self
+*/
+
+@import 'partials/base';
+
+body {
+  @include container;
+  font-family: georgia, serif;
+}
+ul {
+  list-style: none;
+  margin: 1em 0;
+  padding: 0;
+}
+.sortable .ui-icon-arrowthick-2-n-s {
+  position: absolute;
+  margin-left: -1.5em;
+}
+header.main h1 {
+  font-weight: normal;
+  font-family: 'Abel', sans-serif;
+  text-transform: uppercase;
+  padding-bottom: 0.2em;
+  border-bottom: 1px solid #ccc;
+  color: #444;
+}
+nav.main {
+  font-family: georgia;
+  a, a:visited {  
+    color: #888;
+    text-decoration: none;
+    &:hover {
+      color: black;
+    }
+  }
+  li {
+    display: inline;
+    padding-right: 5px;
+  }
+  margin-bottom: 2em;
+}
+a, a:visited {
+  color: red;
+  &:hover {
+    color: black;
+  }
+}
+
+section h1 {
+  font-weight: bold;
+  font-size: 1.0em;
+}
+
+footer.main {
+  margin-top: 2em;
+  border-top: 1px solid #ccc;
+  font-size: 0.95em;
+  color: #666;
+}
+
+h2 {
+  font-size: 1.0em;
+}
+ul > h2 {
+}
+ul li h2 {
+  font-weight: normal;
+}
+ol li h2 {
+  font-weight: normal;
+}

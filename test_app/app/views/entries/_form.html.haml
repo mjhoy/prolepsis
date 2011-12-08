@@ -1,0 +1,7 @@
+=form_for [ @project, @entry ] do |f|
+  %p
+    =f.label :title
+    =f.text_field :title
+
+  %p
+    =f.submit

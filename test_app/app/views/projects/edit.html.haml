@@ -1,0 +1,19 @@
+%h1
+  Editing project
+  %em=@project.name
+
+%p
+  =link_to 'Show project', @project
+
+.tabs
+  %ul
+    %li
+      %a{:href => '#entries'} Edit entries
+    %li
+      %a{:href => '#info'} Project information
+
+  #entries
+    #project-entries-container
+
+  #info
+    = render 'form'
