@@ -26,6 +26,13 @@
    };
 
    PrModel = Model.extend( {
+
+     // Augment Backbone's `toJSON` to add a 'param' property
+     // to the object.
+     toJSON : function() {
+       return _.extend(Model.prototype.toJSON.call(this), { param: this.param() })
+     },
+
      // For models that are referred to on the server by their 'param'
      // attribute rather than their 'id'.
      param : function() {
@@ -61,7 +68,7 @@
        // '/companies/1/employees'.
        if ( typeof b !== "undefined" && b !== null ) {
          pattern = new RegExp( "/" + b + "/[^\/]+" );
-         return window.location.pathname.match( pattern ) + c;
+         return window.location.pathname.match( pattern ) + "/" + c;
        }
        return '/' + c;
      },
@@ -143,8 +150,8 @@
        } else {
          models.append( "<p>No "+collection.collectionName+" yet, please add some!</p>" );
        }
-       if ( $.fn.rails_sort ) {
-         this.$( '.sortable' ).rails_sort( { items : 'li.model-view' } );
+       if ( $.fn.railsSort ) {
+         this.$( '.sortable' ).railsSort( { items : 'li.model-view' } );
        }
        return this;
      },
@@ -234,7 +241,11 @@
        sortable.tragger( 'sortupdate' );
        return false;
      },
-     checkEnabled : function() {
+     // Check whether the disable property of the object contains
+     // the key `key`.
+     //
+     // TODO: Rename? "checkAjax?"
+     checkEnabled : function( key ) {
        var disable = this.disable;
        return disable && _.include( disable, key ) ? false : true;
      },
@@ -267,6 +278,8 @@
            }
          } );
        }
+       e.preventDefault();
+       return false;
      },
      submitUpdate : function ( e ) {
        var self = this,
@@ -298,7 +311,7 @@
      destroy : function ( e ) {
        var self = this,
            form = this.form;
-       if ( !this.checkEnabled('edit') ) return true;
+       if ( !this.checkEnabled( 'destroy' ) ) return true;
        if ( $.rails.allowAction( $( e.target ) ) ) {
          this.model.destroy();
        }
