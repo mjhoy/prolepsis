@@ -2,3 +2,7 @@
 
 Proplepsis is a very simple library that enables some common interactions
 and behaivors for Rails/Backbone apps.
+
+some sort of documentation is coming soon.
+
+The rails app in `test_app/` is an example of how to use Prolepsis.
