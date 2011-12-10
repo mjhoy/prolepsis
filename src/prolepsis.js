@@ -232,14 +232,14 @@
        var el = this.el,
            sortable = $( el ).parents( '.sortable' );
        sortable.prepend( $( el ) );
-       sortable.tragger( 'sortupdate' );
+       sortable.trigger( 'sortupdate' );
        return false;
      },
      sendToBottom : function() {
        var el = this.el,
            sortable = $( el ).parents( '.sortable' );
        sortable.append( $( el ) );
-       sortable.tragger( 'sortupdate' );
+       sortable.trigger( 'sortupdate' );
        return false;
      },
      // Check whether the disable property of the object contains
